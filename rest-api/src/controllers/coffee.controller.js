@@ -1,9 +1,16 @@
+const { coffeeDataSource } = require('../data-sources/coffee.data-source');
+
 class CoffeeController {
   constructor() {
   }
 
-  getById(req, res) {
-    res.status(200).json({});
+  async getById(req, res, next) {
+    try {
+      const data = await coffeeDataSource.getRandom();
+      res.status(200).json(data);
+    } catch (err) {
+      next(err);
+    }
   }
 }
 
