@@ -24,7 +24,7 @@ class CoffeeDataSource {
   async getRandom() {
     try {
       const [data, image] = await Promise.all([
-        httpService.get(`${config.dataApiUrl}/coffee/random_coffeesss`),
+        httpService.get(`${config.dataApiUrl}/coffee/random_coffee`),
         httpService.get(`${config.imagesApiUrl}/json/500/500/coffee,bean`)
       ]);
       return new Coffee(data, image);
