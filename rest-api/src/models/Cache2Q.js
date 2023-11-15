@@ -1,14 +1,8 @@
-const { CacheClient } = require('./CacheClient');
-const { CacheFIFO } = require('./CacheFIFO');
-const { CacheLRU } = require('./CacheLRU');
-
 class Cache2Q {
-  constructor(maxSize) {
-    // in - 1/5, out - 3/5, hot - 1/5
-    const fifthPart = Math.round(maxSize * 0.2);
-    this.inCache = new CacheClient(new CacheFIFO(fifthPart));
-    this.outCache = new CacheClient(new CacheFIFO(maxSize - fifthPart * 2));
-    this.hotCache = new CacheClient(new CacheLRU(fifthPart));
+  constructor({ inCache, outCache, hotCache }) {
+    this.inCache = inCache;
+    this.outCache = outCache;
+    this.hotCache = hotCache;
   }
 
   get(key) {
@@ -60,3 +54,5 @@ class Cache2Q {
       || this.outCache.has(key);
   }
 }
+
+module.exports = { Cache2Q };
