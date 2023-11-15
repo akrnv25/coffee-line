@@ -1,3 +1,5 @@
+const { logger } = require('../logger');
+
 const errorHandler = (err, req, res, next) => {
   let code, text;
   if (err?.code === 'ECONNABORTED') {
@@ -24,7 +26,7 @@ const errorHandler = (err, req, res, next) => {
     code = 400;
     text = 'Unknown inner error. Please try again later.'
   }
-  console.log(err);
+  logger.error(err);
   res.status(400).json({ error: { code, text } });
 };
 

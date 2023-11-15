@@ -4,7 +4,8 @@ const config = {
   dataApiUrl: process.env.DATA_API_URL ?? 'https://random-data-api.com/api',
   imagesApiUrl: process.env.IMAGES_API_URL ?? 'https://loremflickr.com',
   connectionTimeout: process.env.CONNECTION_TIMEOUT ?? 1000,
-  requestTimeout: process.env.REQUEST_TIMEOUT ?? 3000
+  requestTimeout: process.env.REQUEST_TIMEOUT ?? 3000,
+  logLevel: process.env.LOG_LEVEL ?? 'info' // fatal, error, warn, info, debug, trace
 };
 
 module.exports = { config };

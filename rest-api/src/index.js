@@ -4,7 +4,7 @@ const { routes } = require('./routes');
 const { logger, httpLogger } = require('./logger');
 const { errorHandler } = require('./middlewares/error-handler');
 
-logger.info(config, 'Config');
+logger.info(config, 'App config');
 
 const app = express();
 
