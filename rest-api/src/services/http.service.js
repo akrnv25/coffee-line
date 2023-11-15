@@ -1,4 +1,6 @@
 const axios = require('axios');
+const { config } = require('../config');
+const { getAbortSignal } = require('../utilities/get-abort-signal');
 
 class HttpService {
   constructor() {
@@ -6,10 +8,13 @@ class HttpService {
 
   async get(url) {
     try {
-      const res = await axios.get(url);
-      return Promise.resolve(res.data)
+      const res = await axios.get(url, {
+        timeout: config.requestTimeout,
+        signal: getAbortSignal(config.connectionTimeout)
+      });
+      return Promise.resolve(res?.data);
     } catch (err) {
-      return Promise.reject(new Error(err.response.statusText));
+      return Promise.reject(err);
     }
   }
 }

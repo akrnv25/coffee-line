@@ -11,7 +11,9 @@ const cache = () => {
     }
     const oldJson = res.json;
     res.json = (body) => {
-      cacheService.set(req.originalUrl, body);
+      if (body?.error === undefined) {
+        cacheService.set(req.originalUrl, body);
+      }
       return oldJson.call(res, body);
     };
     next();
