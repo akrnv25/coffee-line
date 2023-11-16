@@ -11,7 +11,8 @@ import {
   of,
   startWith,
   Subject,
-  takeUntil
+  takeUntil,
+  tap
 } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
   coffeeItemHeightPx = 420;
   coffeeViewHeightPx = 420;
   coffeeTrackBy: (i: number, item: Coffee) => number | string = (i: number, item: Coffee) => item.id;
+  isLoading = false;
 
   private destroy$: Subject<void> = new Subject();
 
@@ -69,6 +71,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }),
       // ignore if the click occurred immediately after the interval
       debounceTime(200),
+      tap(() => { this.isLoading = true; }),
       // generate fake coffee ID
       map(() => this.coffeeItems.length + 1),
       // ignore if the previous request is not completed
@@ -82,6 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
         // change the link to detect changes
         this.coffeeItems = [...this.coffeeItems, coffee];
       }
+      this.isLoading = false;
     });
   }
 

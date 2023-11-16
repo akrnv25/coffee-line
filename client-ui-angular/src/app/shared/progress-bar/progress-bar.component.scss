@@ -1,0 +1,36 @@
+.progress-bar {
+  height: 2px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  &__value {
+    width: 100%;
+    height: 100%;
+    animation: indeterminateAnimation 4s infinite linear;
+    transform-origin: 0 50%;
+  }
+}
+
+.progress-bar_primary {
+  background-color: #56d5b6;
+
+  .progress-bar__value {
+    background-color: rgb(0, 128, 96);
+  }
+}
+
+@keyframes indeterminateAnimation {
+  0% {
+    transform:  translateX(0) scaleX(0);
+  }
+  40% {
+    transform:  translateX(0) scaleX(0.4);
+  }
+  100% {
+    transform:  translateX(100%) scaleX(0.6);
+  }
+}

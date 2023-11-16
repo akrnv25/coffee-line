@@ -8,6 +8,7 @@ import { ButtonModule } from '@button/button.module';
 import { ProductCardModule } from '@product-card/product-card.module';
 import { ListModule } from '@list/list.module';
 import { CoffeeRendererComponent } from '@app/coffee-renderer/coffee-renderer.component';
+import { ProgressBarModule } from '@progress-bar/progress-bar.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CoffeeRendererComponent } from '@app/coffee-renderer/coffee-renderer.co
     HttpClientModule,
     ButtonModule,
     ProductCardModule,
-    ListModule
+    ListModule,
+    ProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
