@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Coffee } from '@app/core/api/interfaces';
-import { ItemRenderer } from '@list/core/interfaces';
+import { ListItemRenderer } from '@list/core/interfaces';
 
 @Component({
   selector: 'app-coffee-renderer',
@@ -9,7 +9,7 @@ import { ItemRenderer } from '@list/core/interfaces';
   styleUrls: ['./coffee-renderer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoffeeRendererComponent implements ItemRenderer<Coffee> {
+export class CoffeeRendererComponent implements ListItemRenderer<Coffee> {
   @Input() item: Coffee;
   @Input() itemHeightPx: number;
 }

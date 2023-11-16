@@ -1,1 +1,1 @@
-export * from './item-renderer';
+export * from './list-item-renderer';

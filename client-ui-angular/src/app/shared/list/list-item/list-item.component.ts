@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 
-import { ItemRenderer } from '@list/core/interfaces';
+import { ListItemRenderer } from '@list/core/interfaces';
 
 @Component({
   selector: 'app-list-item',
@@ -11,7 +11,7 @@ import { ItemRenderer } from '@list/core/interfaces';
 export class ListItemComponent<I> implements OnInit {
   @Input() item: I;
   @Input() itemHeightPx: number;
-  @Input() itemRenderer: Type<ItemRenderer<I>>;
+  @Input() itemRenderer: Type<ListItemRenderer<I>>;
 
   @ViewChild('viewContainer', { static: true, read: ViewContainerRef })
   private viewContainerRef: ViewContainerRef;

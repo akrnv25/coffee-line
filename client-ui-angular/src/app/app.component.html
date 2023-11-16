@@ -1,6 +1,7 @@
 <app-progress-bar *ngIf="isLoading"></app-progress-bar>
 <div class="container">
   <app-list
+    #coffeeList
     [emptyMessage]="'To display the first product, please, click the '+' button.'"
     [items]="coffeeItems"
     [itemRenderer]="coffeeRenderer"
