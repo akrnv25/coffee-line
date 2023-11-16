@@ -1,0 +1,16 @@
+<app-product-card
+  [image]="item.image"
+  [title]="item.blendName"
+  [widthPx]="320"
+  [heightPx]="itemHeightPx"
+>
+  <div class="coffee">
+    <div class="coffee__source">{{item.location}} ({{item.country}})</div>
+    <h5 class="coffee__name">{{item.blendName}}</h5>
+    <div class="coffee__extra-data">Variety: {{item.variety}}</div>
+    <div class="coffee__extra-data">Intensifier: {{item.intensifier}}</div>
+    <div class="coffee__notes">
+      <div class="coffee__notes-item" *ngFor="let note of item.notes">{{note}}</div>
+    </div>
+  </div>
+</app-product-card>

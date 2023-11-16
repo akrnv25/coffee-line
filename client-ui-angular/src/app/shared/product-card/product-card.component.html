@@ -1,0 +1,8 @@
+<div class="product-card" [style.width.px]="widthPx" [style.height.px]="heightPx">
+  <div class="product-card__container">
+    <img appLazyImage [lazySrc]="image" [alt]="title" class="product-card__image">
+    <div class="product-card__info">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

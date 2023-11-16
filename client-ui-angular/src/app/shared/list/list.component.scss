@@ -1,0 +1,20 @@
+.list {
+  &__empty-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 8px 16px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 8px 16px;
+  }
+}

@@ -1,1 +1,11 @@
-<div>Hello!</div>
+<div class="container">
+  <app-list
+    [emptyMessage]="'To display the first product, please, click the '+' button.'"
+    [items]="coffeeItems"
+    [itemRenderer]="coffeeRenderer"
+    [viewHeightPx]="coffeeViewHeightPx"
+    [itemHeightPx]="coffeeItemHeightPx"
+    [trackBy]="coffeeTrackBy"
+    (add)="oneModeCoffee$.next()"
+  ></app-list>
+</div>

@@ -14,6 +14,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2020",
@@ -21,7 +22,15 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@environments/*": ["src/environments/*"],
+      "@app/*": ["src/app/*"],
+      "@button/*": ["src/app/shared/button/*"],
+      "@product-card/*": ["src/app/shared/product-card/*"],
+      "@list/*": ["src/app/shared/list/*"],
+      "@lazy-image/*": ["src/app/shared/lazy-image/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
