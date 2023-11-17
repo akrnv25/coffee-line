@@ -1,7 +1,13 @@
-<div class="not-found">
-  <h1 class="not-found__title">404</h1>
-  <div><a class="not-found__link" href="/">Home</a></div>
-</div>
+<script>
+  import Container from '$lib/components/Container.svelte';
+</script>
+
+<Container maxWidth="640px" height="100%">
+  <div class="not-found">
+    <h1 class="not-found__title">404</h1>
+    <div><a class="not-found__link" href="/">Home</a></div>
+  </div>
+</Container>
 
 <style>
   .not-found {

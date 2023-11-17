@@ -1,5 +1,9 @@
-<div class="home">
-  <div class="home__container">
+<script>
+  import Container from '$lib/components/Container.svelte';
+</script>
+
+<Container maxWidth="640px">
+  <div class="home">
     <h1 class="home__title">Home page</h1>
     <div>
       {#each [0, 1, 2, 4] as item (item)}
@@ -12,21 +16,9 @@
       {/each}
     </div>
   </div>
-</div>
+</Container>
 
 <style>
-  .home {
-    width: 100%;
-    height: 100%;
-  }
-
-  .home__container {
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 16px;
-  }
-
   .home__title {
     color: #2A3759;
     font-size: 24px;
