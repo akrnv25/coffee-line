@@ -1,14 +1,16 @@
 <script>
-  import { onMount } from 'svelte';
+  import { afterUpdate, getContext, onMount } from 'svelte';
   import ProductCard from '$lib/components/ProductCard.svelte';
   import Container from '$lib/components/Container.svelte';
   import Button from '$lib/components/Button.svelte';
   import Coffee from './Coffee.svelte';
   import { coffeeItems } from './store';
 
-  onMount(() => {
-    fetchCoffee();
-  });
+  let catalog;
+  let layoutContainerContext = getContext('layoutContainer');
+
+  onMount(() => fetchCoffee());
+  afterUpdate(() => layoutContainerContext.scrollToBottom());
 
   function fetchCoffee() {
     const id = $coffeeItems.length + 1;
@@ -27,7 +29,7 @@
   <div class="catalog">
     {#each $coffeeItems as coffee (coffee.id)}
       <ProductCard image={coffee.image} height="420px" width="320px">
-        <Coffee coffee="{coffee}"></Coffee>
+        <Coffee coffee="{coffee}" />
       </ProductCard>
     {/each}
     <Button title="+" on:click={fetchCoffee} />

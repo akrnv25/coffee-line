@@ -1,9 +1,14 @@
 <script>
   import '../normalize.css';
+  import { setContext } from 'svelte';
+
   let navItems = [
     { title: 'Home', href: '/' },
     { title: 'Catalog', href: '/catalog' }
   ];
+  let container;
+  const scrollToBottom = () => container.scroll({ top: container.scrollHeight, behavior: 'smooth' });
+  setContext('layoutContainer', { scrollToBottom });
 </script>
 
 <div class="layout">
@@ -15,7 +20,7 @@
       {/each}
     </nav>
   </div>
-  <div class="layout__container">
+  <div class="layout__container" bind:this={container}>
     <slot/>
   </div>
 </div>
