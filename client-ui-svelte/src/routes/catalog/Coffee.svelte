@@ -1,4 +1,6 @@
 <script>
+  import TagList from '$lib/components/TagList.svelte'
+
   export let coffee;
 </script>
 
@@ -7,11 +9,7 @@
   <h5 class="coffee__name">{coffee.blendName}</h5>
   <div class="coffee__extra-data">Variety: {coffee.variety}</div>
   <div class="coffee__extra-data">Intensifier: {coffee.intensifier}</div>
-  <div class="coffee__notes">
-    {#each coffee.notes as note (note)}
-      <div class="coffee__notes-item">{note}</div>
-    {/each}
-  </div>
+  <div class="coffee__notes"><TagList items={coffee.notes} /></div>
 </div>
 
 <style>
@@ -32,7 +30,7 @@
     font-size: 14px;
     font-weight: 400;
     font-style: italic;
-    color: #908f8f;
+    color: #778FD2;
   }
 
   .coffee__extra-data {
@@ -44,25 +42,6 @@
   .coffee__notes {
     flex-grow: 1;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow: auto;
-    margin: 8px 0 4px 0;
-    align-items: center;
-    border-radius: 4px;
-  }
-
-  .coffee__notes-item {
-    padding: 6px 12px;
-    background: antiquewhite;
-    font-size: 12px;
-    line-height: 1;
-    margin-right: 6px;
-    margin-bottom: 6px;
-    white-space: nowrap;
-  }
-
-  .coffee__notes-item:last-child {
-    margin-right: 0;
+    align-items: flex-end;
   }
 </style>
