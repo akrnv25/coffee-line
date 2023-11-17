@@ -1,39 +1,37 @@
-<script>
-  // todo: check styles import
-  import '../normalize.css';
-  import { onMount } from 'svelte';
-  import { coffeeItems } from './page.store.js';
-  import CoffeeCard from '../components/CoffeeCard.svelte';
-  import Button from '../components/Button.svelte';
-
-  onMount(() => {
-    fetchCoffee();
-  });
-
-  function fetchCoffee() {
-    const id = $coffeeItems.length + 1;
-    fetch(`http://localhost:3200/api/coffee/${id}`)
-      .then(response => response.json())
-      .then(coffee => {
-        coffeeItems.update((coffeeItems) => ([...coffeeItems, coffee]));
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-</script>
-
-<div class="container">
-  {#each $coffeeItems as coffee (coffee.id)}
-    <CoffeeCard coffee="{coffee}" heightPx="420" widthPx="320" />
-  {/each}
-  <Button title="+" on:click={fetchCoffee} />
+<div class="home">
+  <div class="home__container">
+    <h1 class="home__title">Home page</h1>
+    <div>
+      {#each [0, 1, 2, 4] as item (item)}
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Animi aperiam, architecto asperiores eligendi fugit illo inventore
+          laboriosam libero magnam magni minima nam natus quos recusandae repellendus velit
+          veritatis voluptatibus voluptatum.
+        </p>
+      {/each}
+    </div>
+  </div>
 </div>
 
 <style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .home {
+    width: 100%;
+    height: 100%;
+  }
+
+  .home__container {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  .home__title {
+    color: #2A3759;
+    font-size: 24px;
+    line-height: 1;
+    padding: 0;
+    margin: 32px 0 16px 0;
   }
 </style>
