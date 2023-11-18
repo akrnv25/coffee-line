@@ -18,7 +18,7 @@
   <div class="layout__header">
     <div class="logo">Dear Svelte</div>
     <nav class="nav">
-      {#each navItems as navItem (navItem)}
+      {#each navItems as navItem (navItem.href)}
         <a class="nav__item" href={navItem.href}>{navItem.title}</a>
       {/each}
     </nav>

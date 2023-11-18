@@ -1,8 +1,13 @@
 <script>
   export let title;
+  export let disabled;
 </script>
 
-<button class="button button_primary" on:click>{title}</button>
+<button
+  class="button button_primary"
+  on:click
+  disabled={disabled}
+>{title}</button>
 
 <style>
   .button {
@@ -28,5 +33,15 @@
 
   .button_primary:hover {
     background: #778FD2;
+  }
+
+  button:disabled,
+  button:disabled:hover,
+  button[disabled],
+  button[disabled]:hover {
+    color: #ffffff;
+    background: #000000;
+    opacity: 0.1;
+    cursor: not-allowed;
   }
 </style>

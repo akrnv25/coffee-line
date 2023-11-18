@@ -18,8 +18,13 @@
     isLoading.set(true);
     const id = $coffeeItems.length + 1;
     coffeeCollection.getById(id)
-      .then(coffee => {
-        coffeeItems.update((coffeeItems) => ([...coffeeItems, coffee]));
+      .then(res => {
+        if (res.error) {
+          console.log(res.error);
+          isLoading.set(false);
+          return;
+        }
+        coffeeItems.update((coffeeItems) => ([...coffeeItems, res.data]));
         isLoading.set(false);
       })
       .catch(error => {
@@ -36,7 +41,9 @@
         <Coffee coffee="{coffee}" />
       </ProductCard>
     {/each}
-    <Button title="+" on:click={oneMoreCoffee} />
+    <div class="catalog__actions">
+      <Button title="+" on:click={oneMoreCoffee} disabled={$isLoading} />
+    </div>
   </div>
 </Container>
 
@@ -45,5 +52,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .catalog__actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 16px 0;
   }
 </style>

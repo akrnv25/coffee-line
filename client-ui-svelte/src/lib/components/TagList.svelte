@@ -1,11 +1,18 @@
 <script>
   export let items = [];
+  export let trackKey = null;
 </script>
 
 <div class="tag-list">
-  {#each items as item (item)}
-    <div class="tag-list__item tag-list__item_primary">{item}</div>
-  {/each}
+  {#if trackKey}
+    {#each items as item (item[trackKey])}
+      <div class="tag-list__item tag-list__item_primary">{item}</div>
+    {/each}
+  {:else}
+    {#each items as item}
+      <div class="tag-list__item tag-list__item_primary">{item}</div>
+    {/each}
+  {/if}
 </div>
 
 <style>
