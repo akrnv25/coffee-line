@@ -7,7 +7,7 @@
   import { coffeeCollection } from '$lib/api/coffee/collection';
   import Coffee from './Coffee.svelte';
   import { coffeeItems } from './catalog.store';
-  import { isLoading } from '../layout.store';
+  import { isLoading, notifications } from '../layout.store';
 
   const layoutContext = getContext('layout');
   const coffeeGettingTimeout = 30000;
@@ -31,7 +31,8 @@
     return coffeeCollection.getById(id)
       .then(res => {
         if (res.error) {
-          console.log(res.error);
+          const { text, code } = res.error;
+          notifications.send(`${text} (${code})`);
           return;
         }
         coffeeItems.update((coffeeItems) => ([...coffeeItems, res.data]));
@@ -44,6 +45,7 @@
       })
       .catch(err => {
         console.log(err);
+        notifications.send('Unknown error');
       })
       .finally(() => {
         isLoading.set(false);
