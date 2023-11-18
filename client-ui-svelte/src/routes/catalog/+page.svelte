@@ -4,23 +4,27 @@
   import Container from '$lib/components/Container.svelte';
   import Button from '$lib/components/Button.svelte';
   import Coffee from './Coffee.svelte';
-  import { coffeeItems } from './store';
+  import { coffeeItems } from './catalog.store';
+  import { isLoading } from '../layout.store';
 
   let catalog;
-  let layoutContainerContext = getContext('layoutContainer');
+  let layoutContext = getContext('layout');
 
   onMount(() => fetchCoffee());
-  afterUpdate(() => layoutContainerContext.scrollToBottom());
+  afterUpdate(() => layoutContext.scrollToBottom());
 
   function fetchCoffee() {
+    isLoading.set(true);
     const id = $coffeeItems.length + 1;
     fetch(`http://localhost:3200/api/coffee/${id}`)
       .then(response => response.json())
       .then(coffee => {
         coffeeItems.update((coffeeItems) => ([...coffeeItems, coffee]));
+        isLoading.set(false);
       })
       .catch(error => {
         console.log(error);
+        isLoading.set(false);
       });
   }
 </script>

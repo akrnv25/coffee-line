@@ -1,6 +1,8 @@
 <script>
   import '../normalize.css';
   import { setContext } from 'svelte';
+  import ProgressBar from '$lib/components/ProgressBar.svelte';
+  import { isLoading } from './layout.store';
 
   let navItems = [
     { title: 'Home', href: '/' },
@@ -8,10 +10,11 @@
   ];
   let container;
   const scrollToBottom = () => container.scroll({ top: container.scrollHeight, behavior: 'smooth' });
-  setContext('layoutContainer', { scrollToBottom });
+  setContext('layout', { scrollToBottom });
 </script>
 
 <div class="layout">
+  {#if $isLoading}<div class="layout__progress-bar"><ProgressBar /></div>{/if}
   <div class="layout__header">
     <div class="logo">Dear Svelte</div>
     <nav class="nav">
@@ -34,8 +37,16 @@
   }
 
   .layout {
+    position: relative;
     width: 100vw;
     height: 100vh;
+  }
+
+  .layout__progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
   .layout__header {
