@@ -1,6 +1,7 @@
-// todo: use env variables
+import { PUBLIC_API_URL } from '$env/static/public';
+
 export const coffeeCollection = {
-  getById: (id) => fetch(`http://localhost:3200/api/coffee/${id}`)
+  getById: (id) => fetch(`${PUBLIC_API_URL}/coffee/${id}`)
     .then(r => r.json())
     .then(r => !r.error ? { data: r } : { error: r.error })
 };
