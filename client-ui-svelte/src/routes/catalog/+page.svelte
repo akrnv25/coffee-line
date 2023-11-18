@@ -64,7 +64,7 @@
     {/if}
     {#each $coffeeItems as coffee (coffee.id)}
       <div class="catalog__item" transition:fade>
-        <ProductCard image={coffee.image} height="420px" width="320px">
+        <ProductCard image={{ src: coffee.image, alt: coffee.blendName }} height="420px" width="320px">
           <Coffee coffee="{coffee}" />
         </ProductCard>
       </div>

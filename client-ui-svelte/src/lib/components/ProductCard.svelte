@@ -1,4 +1,6 @@
 <script>
+  import { lazyLoad } from '$lib/actions/lazy-load';
+
   export let height;
   export let width;
   export let image;
@@ -6,7 +8,10 @@
 
 <div class="product-card" style:height style:width>
   <div class="product-card__container">
-    <img src={image} alt="" class="product-card__image">
+    <img
+      use:lazyLoad={image?.src || ''} alt={image?.alt || ''}
+      class="product-card__image"
+    >
     <div class="product-card__content">
       <slot/>
     </div>
