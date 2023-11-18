@@ -40,8 +40,8 @@
   button[disabled],
   button[disabled]:hover {
     color: var(--color-white);
-    background: var(--color-black);
-    opacity: 0.1;
+    background: var(--color-dark);
+    opacity: 0.2;
     cursor: not-allowed;
   }
 </style>
