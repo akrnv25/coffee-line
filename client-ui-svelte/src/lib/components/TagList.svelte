@@ -19,7 +19,6 @@
 
   .tag-list__item {
     padding: 6px 12px;
-    background: antiquewhite;
     font-size: 12px;
     line-height: 1;
     margin-right: 6px;
@@ -29,8 +28,8 @@
   }
 
   .tag-list__item_primary {
-    color: #ffffff;
-    background: #2A3759;
+    color: var(--color-white);
+    background: var(--color-primary);
   }
 
   .tag-list__item:last-child {

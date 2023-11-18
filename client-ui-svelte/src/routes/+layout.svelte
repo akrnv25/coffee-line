@@ -36,11 +36,19 @@
 </div>
 
 <style>
+  :root {
+    --color-white: #FFFFFF;
+    --color-dark: #000000;
+    --color-dark-shadow: rgba(0, 0, 0, 0.2);
+    --color-primary: #2A3759;
+    --color-secondary: #778FD2;
+  }
+
   * {
     box-sizing: border-box;
     font-family: Verdana, sans-serif;
     font-size: 16px;
-    color: #2A3759;
+    color: var(--color-primary);
   }
 
   .layout {
@@ -65,7 +73,7 @@
   .layout__header {
     height: 48px;
     padding: 8px 32px;
-    background: #778FD2;
+    background: var(--color-secondary);
     display: flex;
     overflow: hidden;
     flex-direction: row;
@@ -76,12 +84,12 @@
   .layout__container {
     width: 100%;
     height: calc(100% - 48px);
-    background: #FFFFFF;
+    background: var(--color-white);
     overflow: auto;
   }
 
   .logo {
-    color: #2A3759;
+    color: var(--color-primary);
     font-size: 24px;
     font-weight: 600;
     font-family: Georgia, serif;
@@ -92,7 +100,7 @@
   }
 
   .nav__item {
-    color: #FFFFFF;
+    color: var(--color-white);
     text-decoration: none;
     display: inline-block;
     margin-right: 16px;
@@ -100,7 +108,7 @@
   }
 
   .nav__item:hover {
-    color: #2A3759;
+    color: var(--color-primary);
   }
 
   .nav__item:last-child {

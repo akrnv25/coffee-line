@@ -31,7 +31,7 @@
     font-size: 14px;
     font-weight: 400;
     font-style: italic;
-    color: #778FD2;
+    color: var(--color-secondary);
   }
 
   .coffee__extra-data {

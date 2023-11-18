@@ -22,10 +22,10 @@
    }
 
   .progress-bar_primary {
-    background: #778FD2;
+    background: var(--color-secondary);
   }
   .progress-bar_primary .progress-bar__value {
-    background: #2A3759;
+    background: var(--color-primary);
   }
 
   @keyframes indeterminateAnimation {

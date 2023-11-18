@@ -20,7 +20,7 @@
 
 <style>
   .home__title {
-    color: #2A3759;
+    color: var(--color-primary);
     font-size: 24px;
     line-height: 1;
     padding: 0;

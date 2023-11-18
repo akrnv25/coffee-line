@@ -20,7 +20,7 @@
   }
 
   .not-found__title {
-    color: #2A3759;
+    color: var(--color-primary);
     font-size: 64px;
     line-height: 1;
     padding: 0;
@@ -28,11 +28,11 @@
   }
 
   .not-found__link {
-    color: #2A3759;
+    color: var(--color-primary);
     transition: 0.2s;
   }
 
   .not-found__link:hover {
-    color: #778FD2;
+    color: var(--color-secondary);
   }
 </style>

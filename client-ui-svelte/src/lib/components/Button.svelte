@@ -23,24 +23,24 @@
     font-weight: 600;
     font-size: 14px;
     transition: background-color 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
-    box-shadow: 0 0.6px 1.2px rgba(0, 0, 0, 0.2), 0 1.2px 1.2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.6px 1.2px var(--color-dark-shadow), 0 1.2px 1.2px var(--color-dark-shadow);
   }
 
   .button_primary {
-    color: #ffffff;
-    background: #2A3759;
+    color: var(--color-white);
+    background: var(--color-primary);
   }
 
   .button_primary:hover {
-    background: #778FD2;
+    background: var(--color-secondary);
   }
 
   button:disabled,
   button:disabled:hover,
   button[disabled],
   button[disabled]:hover {
-    color: #ffffff;
-    background: #000000;
+    color: var(--color-white);
+    background: var(--color-black);
     opacity: 0.1;
     cursor: not-allowed;
   }

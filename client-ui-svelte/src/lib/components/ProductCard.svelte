@@ -30,7 +30,7 @@
     border-radius: 4px;
     width: 100%;
     height: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 4px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px var(--color-dark-shadow), 0 4px 4px var(--color-dark-shadow);
   }
 
   .product-card__image {

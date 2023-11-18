@@ -1,4 +1,4 @@
 export interface LayoutContext {
   scrollToBottom: () => void;
-  isScrollAtBottom: () => void;
+  isScrollAtBottom: () => boolean;
 }
