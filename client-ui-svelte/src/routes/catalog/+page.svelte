@@ -1,5 +1,5 @@
 <script>
-  import { afterUpdate, getContext, onDestroy, onMount } from 'svelte';
+  import { getContext, onDestroy, onMount, tick } from 'svelte';
   import ProductCard from '$lib/components/ProductCard.svelte';
   import { fade } from 'svelte/transition';
   import Container from '$lib/components/Container.svelte';
@@ -18,13 +18,13 @@
     await oneMoreCoffee();
     isFirstCoffeeGetting = false;
   });
-  afterUpdate(() => layoutContext.scrollToBottom());
   onDestroy(() => {
     clearCoffeeGettingTimeout();
     coffeeItems.set([]);
   })
 
-  async function oneMoreCoffee() {
+  async function oneMoreCoffee(isClickEvent = false) {
+    const isScrollAtBottom = layoutContext.isScrollAtBottom();
     isLoading.set(true);
     clearCoffeeGettingTimeout();
     const id = $coffeeItems.length + 1;
@@ -32,17 +32,21 @@
       .then(res => {
         if (res.error) {
           console.log(res.error);
-          isLoading.set(false);
           return;
         }
         coffeeItems.update((coffeeItems) => ([...coffeeItems, res.data]));
-        isLoading.set(false);
+        return tick();
+      })
+      .then(() => {
+        if (isClickEvent || isScrollAtBottom) {
+          layoutContext.scrollToBottom();
+        }
       })
       .catch(err => {
         console.log(err);
-        isLoading.set(false);
       })
       .finally(() => {
+        isLoading.set(false);
         coffeeGettingTimeoutId = setTimeout(oneMoreCoffee, coffeeGettingTimeout);
       });
   }

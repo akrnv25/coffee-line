@@ -10,7 +10,8 @@
   ];
   let container;
   const scrollToBottom = () => container.scroll({ top: container.scrollHeight, behavior: 'smooth' });
-  setContext('layout', { scrollToBottom });
+  const isScrollAtBottom = () => container.scrollHeight - container.clientHeight === container.scrollTop;
+  setContext('layout', { scrollToBottom, isScrollAtBottom });
 </script>
 
 <div class="layout">
