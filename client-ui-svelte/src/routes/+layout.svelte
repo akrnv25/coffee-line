@@ -2,7 +2,8 @@
   import '../normalize.css';
   import { setContext } from 'svelte';
   import ProgressBar from '$lib/components/ProgressBar.svelte';
-  import { isLoading } from './layout.store';
+  import { isLoading, notifications } from './layout.store';
+  import NotificationList from '$lib/components/NotificationList.svelte';
 
   let navItems = [
     { title: 'Home', href: '/' },
@@ -16,6 +17,9 @@
 
 <div class="layout">
   {#if $isLoading}<div class="layout__progress-bar"><ProgressBar /></div>{/if}
+  <div class="layout__toast">
+    <NotificationList notifications={$notifications} />
+  </div>
   <div class="layout__header">
     <div class="logo">Dear Svelte</div>
     <nav class="nav">
@@ -48,6 +52,12 @@
     top: 0;
     left: 0;
     right: 0;
+  }
+
+  .layout__toast {
+    position: absolute;
+    top: 56px;
+    right: 8px;
   }
 
   .layout__header {
