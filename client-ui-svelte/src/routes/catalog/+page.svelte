@@ -1,7 +1,7 @@
 <script>
   import { afterUpdate, getContext, onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
   import ProductCard from '$lib/components/ProductCard.svelte';
+  import { fade } from 'svelte/transition';
   import Container from '$lib/components/Container.svelte';
   import Button from '$lib/components/Button.svelte';
   import { coffeeCollection } from '$lib/api/coffee/collection';
@@ -12,17 +12,21 @@
   const layoutContext = getContext('layout');
   const coffeeGettingTimeout = 30000;
   let coffeeGettingTimeoutId = null;
+  let isFirstCoffeeGetting = true;
 
-  onMount(() => oneMoreCoffee());
+  onMount(async () => {
+    await oneMoreCoffee();
+    isFirstCoffeeGetting = false;
+  });
   afterUpdate(() => layoutContext.scrollToBottom());
 
-  function oneMoreCoffee() {
+  async function oneMoreCoffee() {
     isLoading.set(true);
     if (coffeeGettingTimeoutId) {
       clearTimeout(coffeeGettingTimeoutId);
     }
     const id = $coffeeItems.length + 1;
-    coffeeCollection.getById(id)
+    return coffeeCollection.getById(id)
       .then(res => {
         if (res.error) {
           console.log(res.error);
@@ -44,22 +48,23 @@
 
 <Container maxWidth="640px">
   <div class="catalog">
-    {#if !$coffeeItems.length}
-      <div class="catalog__empty-message">
+    {#if (!$coffeeItems.length && !isFirstCoffeeGetting)}
+      <div class="catalog__empty-message" transition:fade>
         Please, click the button to add the first product to the catalog.
       </div>
-    {:else}
-      {#each $coffeeItems as coffee (coffee.id)}
-        <div class="catalog__item" transition:fade>
-          <ProductCard image={coffee.image} height="420px" width="320px">
-            <Coffee coffee="{coffee}" />
-          </ProductCard>
-        </div>
-      {/each}
     {/if}
-    <div class="catalog__actions">
-      <Button title="+" on:click={oneMoreCoffee} disabled={$isLoading} />
-    </div>
+    {#each $coffeeItems as coffee (coffee.id)}
+      <div class="catalog__item" transition:fade>
+        <ProductCard image={coffee.image} height="420px" width="320px">
+          <Coffee coffee="{coffee}" />
+        </ProductCard>
+      </div>
+    {/each}
+    {#if !isFirstCoffeeGetting}
+      <div class="catalog__actions" transition:fade>
+        <Button title="+" on:click={oneMoreCoffee} disabled={$isLoading} />
+      </div>
+    {/if}
   </div>
 </Container>
 
