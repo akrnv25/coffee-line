@@ -3,6 +3,7 @@
   import ProductCard from '$lib/components/ProductCard.svelte';
   import Container from '$lib/components/Container.svelte';
   import Button from '$lib/components/Button.svelte';
+  import { coffeeCollection } from '$lib/api/coffee/collection';
   import Coffee from './Coffee.svelte';
   import { coffeeItems } from './catalog.store';
   import { isLoading } from '../layout.store';
@@ -10,14 +11,13 @@
   let catalog;
   let layoutContext = getContext('layout');
 
-  onMount(() => fetchCoffee());
+  onMount(() => oneMoreCoffee());
   afterUpdate(() => layoutContext.scrollToBottom());
 
-  function fetchCoffee() {
+  function oneMoreCoffee() {
     isLoading.set(true);
     const id = $coffeeItems.length + 1;
-    fetch(`http://localhost:3200/api/coffee/${id}`)
-      .then(response => response.json())
+    coffeeCollection.getById(id)
       .then(coffee => {
         coffeeItems.update((coffeeItems) => ([...coffeeItems, coffee]));
         isLoading.set(false);
@@ -36,7 +36,7 @@
         <Coffee coffee="{coffee}" />
       </ProductCard>
     {/each}
-    <Button title="+" on:click={fetchCoffee} />
+    <Button title="+" on:click={oneMoreCoffee} />
   </div>
 </Container>
 
