@@ -1,5 +1,5 @@
-<script>
-  export let top = 0;
+<script lang="ts">
+  export let top: number = 0;
 </script>
 
 <div class="progress-bar progress-bar_primary" style:top>

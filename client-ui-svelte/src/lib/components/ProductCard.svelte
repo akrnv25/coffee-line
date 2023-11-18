@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   import { lazyLoad } from '$lib/actions/lazy-load';
 
-  export let height;
-  export let width;
-  export let image;
+  export let height: string;
+  export let width: string;
+  export let image: { src: string; alt: string; };
 </script>
 
 <div class="product-card" style:height style:width>

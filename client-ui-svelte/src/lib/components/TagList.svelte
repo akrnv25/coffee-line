@@ -1,5 +1,5 @@
-<script>
-  export let items = [];
+<script lang="ts">
+  export let items: string[] = [];
 </script>
 
 <div class="tag-list">

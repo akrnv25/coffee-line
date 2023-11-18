@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { getContext, onDestroy, onMount, tick } from 'svelte';
   import ProductCard from '$lib/components/ProductCard.svelte';
   import { fade } from 'svelte/transition';
@@ -8,11 +8,12 @@
   import Coffee from './Coffee.svelte';
   import { coffeeItems } from './catalog.store';
   import { isLoading, notifications } from '../layout.store';
+  import type { LayoutContext } from '../layout-context';
 
-  const layoutContext = getContext('layout');
-  const coffeeGettingTimeout = 30000;
-  let coffeeGettingTimeoutId = null;
-  let isFirstCoffeeGetting = true;
+  const layoutContext = getContext<LayoutContext>('layout');
+  const coffeeGettingTimeout: number = 30000;
+  let coffeeGettingTimeoutId: number = null;
+  let isFirstCoffeeGetting: boolean = true;
 
   onMount(async () => {
     await oneMoreCoffee();
@@ -23,7 +24,7 @@
     coffeeItems.set([]);
   })
 
-  async function oneMoreCoffee(isClickEvent = false) {
+  async function oneMoreCoffee(): Promise<void> {
     const isScrollAtBottom = layoutContext.isScrollAtBottom();
     isLoading.set(true);
     clearCoffeeGettingTimeout();
@@ -39,7 +40,7 @@
         return tick();
       })
       .then(() => {
-        if (isClickEvent || isScrollAtBottom) {
+        if (isScrollAtBottom) {
           layoutContext.scrollToBottom();
         }
       })

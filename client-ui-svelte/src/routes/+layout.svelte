@@ -1,18 +1,20 @@
-<script>
+<script lang="ts">
   import '../normalize.css';
   import { setContext } from 'svelte';
   import ProgressBar from '$lib/components/ProgressBar.svelte';
   import { isLoading, notifications } from './layout.store';
   import NotificationList from '$lib/components/NotificationList.svelte';
+  import type { NavItem } from '$lib/interfaces/nav-item';
+  import type { LayoutContext } from './layout-context';
 
-  let navItems = [
+  let navItems: NavItem[] = [
     { title: 'Home', href: '/' },
     { title: 'Catalog', href: '/catalog' }
   ];
-  let container;
+  let container: HTMLElement;
   const scrollToBottom = () => container.scroll({ top: container.scrollHeight, behavior: 'smooth' });
   const isScrollAtBottom = () => container.scrollHeight - container.clientHeight === container.scrollTop;
-  setContext('layout', { scrollToBottom, isScrollAtBottom });
+  setContext<LayoutContext>('layout', { scrollToBottom, isScrollAtBottom });
 </script>
 
 <div class="layout">

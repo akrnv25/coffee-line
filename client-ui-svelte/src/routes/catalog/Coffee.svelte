@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
+  import type { Coffee } from '$lib/api/coffee/coffee';
   import TagList from '$lib/components/TagList.svelte'
 
-  export let coffee;
+  export let coffee: Coffee;
 </script>
 
 <div class="coffee">

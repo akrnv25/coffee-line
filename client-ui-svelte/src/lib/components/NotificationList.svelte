@@ -1,8 +1,9 @@
-<script>
+<script lang="ts">
   import { fly } from 'svelte/transition';
-  import { flip } from "svelte/animate";
+  import { flip } from 'svelte/animate';
+  import type { Notification } from '$lib/interfaces/notification';
 
-  export let notifications = [];
+  export let notifications: Notification[] = [];
 </script>
 
 <div class="notification-list">
